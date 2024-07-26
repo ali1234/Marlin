@@ -69,6 +69,7 @@ void ControllerFan::update() {
     if ( (stepper.axis_enabled.bits & axis_mask)
       || TERN0(HAS_HEATED_BED, thermalManager.temp_bed.soft_pwm_amount > 0)
       || TERN0(HAS_CONTROLLER_FAN_MIN_BOARD_TEMP, thermalManager.wholeDegBoard() >= CONTROLLER_FAN_MIN_BOARD_TEMP)
+      || TERN0(HAS_CONTROLLER_FAN_MIN_E0_TEMP, thermalManager.wholeDegHotend(0) >= CONTROLLER_FAN_MIN_E0_TEMP)
     ) lastMotorOn = ms; //... set time to NOW so the fan will turn on
 
     // Fan Settings. Set fan > 0:
